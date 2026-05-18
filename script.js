@@ -1,4 +1,5 @@
 let humanScore = 0, computerScore = 0;
+const container = document.querySelector("#container");
 
 function getComputerChoice() {
     const choice = Math.random();
@@ -11,58 +12,77 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice(){
-    const choice = prompt("Please enter rock, paper, or scissors:");
-    return choice;
-}
-
-function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice) {
     humanChoice = humanChoice.toLowerCase();
+    computerChoice = getComputerChoice();
     if (humanChoice === computerChoice) {
-        console.log("It's a tie!");
+        const content = document.createElement("div");
+        content.classList.add("content");
+        content.textContent = "It's a tie!";
+        container.appendChild(content);
     }
-    switch (humanChoice) {
+    else switch (humanChoice) {
         case "rock":
             if (computerChoice === "scissors") {
-                console.log("You win! Rock beats scissors.");
+                const content = document.createElement("div");
+                content.classList.add("content");
+                content.textContent = "You win! Rock beats scissors.";
+                container.appendChild(content);
                 humanScore++;
             } else {
-                console.log("You lose! Paper beats rock.");
+                const content = document.createElement("div");
+                content.classList.add("content");
+                content.textContent = "You lose! Paper beats rock.";
+                container.appendChild(content);
                 computerScore++;
             }
             break;
         case "paper":
             if (computerChoice === "rock") {
-                console.log("You win! Paper beats rock.");
+                const content = document.createElement("div");
+                content.classList.add("content");
+                content.textContent = "You win! Paper beats rock.";
+                container.appendChild(content);
                 humanScore++;
             } else {
-                console.log("You lose! Scissors beats paper.");
+                const content = document.createElement("div");
+                content.classList.add("content");
+                content.textContent = "You lose! Scissors beats paper.";
+                container.appendChild(content);
                 computerScore++;
             }
             break;
         case "scissors":
             if (computerChoice === "paper") {
-                console.log("You win! Scissors beats paper.");
+                const content = document.createElement("div");
+                content.classList.add("content");
+                content.textContent = "You win! Scissors beats paper.";
+                container.appendChild(content);
                 humanScore++;
             } else {
-                console.log("You lose! Rock beats scissors.");
+                const content = document.createElement("div");
+                content.classList.add("content");
+                content.textContent = "You lose! Rock beats scissors.";
+                container.appendChild(content);
                 computerScore++;
             }
             break;
     }
     
 }
+const button_r = document.querySelector("#rock");
+const button_p = document.querySelector("button#paper");
+const button_s = document.querySelector("button#scissor");
 
-function playGame(){
-    for (let i = 0; i < 5; i++) {
-         let humanChoice = getHumanChoice();
-        let computerChoice = getComputerChoice();
-    
-        
-        playRound(humanChoice, computerChoice);
-    }
-    console.log(`Final Score - You: ${humanScore}, Computer: ${computerScore}`);
-    humanScore > computerScore ? console.log("Congratulations! You win the game!") : console.log("Sorry! Computer wins the game!");
-}
+button_r.addEventListener("click", () => {
+    playRound("rock");
+});
 
-playGame();
+button_p.addEventListener("click", () => {
+    playRound("paper");
+});
+
+button_s.addEventListener("click", () => {
+    playRound("scissors");
+});
+
