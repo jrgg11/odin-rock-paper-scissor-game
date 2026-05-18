@@ -57,7 +57,13 @@ function playRound(humanChoice) {
     }
 
     container.appendChild(content);
+    let score = document.querySelector("div#container > div");
+    let prgph = document.createElement("p");
+    prgph.classList.add("content");
+    prgph.textContent = "YOU: " + humanScore + "\nCOMPUTER: " + computerScore;
+    score.appendChild(prgph);
 }
+
 const button_r = document.querySelector("#rock");
 const button_p = document.querySelector("button#paper");
 const button_s = document.querySelector("button#scissor");
@@ -72,6 +78,7 @@ function playGame (){
     button_s.addEventListener("click", () => {
         playRound("scissors");
     });
+
 }
 
 playGame();
