@@ -1,5 +1,5 @@
 let humanScore = 0, computerScore = 0;
-const container = document.querySelector("#container");
+const status = document.querySelector("#status");
 
 function getComputerChoice() {
     const choice = Math.random();
@@ -15,53 +15,41 @@ function getComputerChoice() {
 function playRound(humanChoice) {
     humanChoice = humanChoice.toLowerCase();
     computerChoice = getComputerChoice();
-    const content = document.createElement("div");
-    content.classList.add("content");
+    let message = "";
     if (humanChoice === computerChoice) {
-        content.textContent = "It's a tie!";
+        message = "It's a tie!";
     }
     else switch (humanChoice) {
         case "rock":
             if (computerChoice === "scissors") {
-                content.textContent = "You win! Rock beats scissors.";
-                
+                message = "You win! Rock beats scissors.";
                 humanScore++;
             } else {
-                content.textContent = "You lose! Paper beats rock.";
-                
+                message = "You lose! Paper beats rock.";
                 computerScore++;
             }
             break;
         case "paper":
             if (computerChoice === "rock") {
-                content.textContent = "You win! Paper beats rock.";
-                
+                message = "You win! Paper beats rock.";
                 humanScore++;
             } else {
-                content.textContent = "You lose! Scissors beats paper.";
-                
+                message = "You lose! Scissors beats paper.";
                 computerScore++;
             }
             break;
         case "scissors":
             if (computerChoice === "paper") {
-                content.textContent = "You win! Scissors beats paper.";
-                
+                message = "You win! Scissors beats paper.";
                 humanScore++;
             } else {
-                content.textContent = "You lose! Rock beats scissors.";
-                
+                message = "You lose! Rock beats scissors.";
                 computerScore++;
             }
             break;
     }
 
-    container.appendChild(content);
-    let score = document.querySelector("div#container > div");
-    let prgph = document.createElement("p");
-    prgph.classList.add("content");
-    prgph.textContent = "YOU: " + humanScore + "\nCOMPUTER: " + computerScore;
-    score.appendChild(prgph);
+    status.innerHTML = `${message}<br>YOU: ${humanScore} COMPUTER: ${computerScore}`;
 }
 
 const button_r = document.querySelector("#rock");
